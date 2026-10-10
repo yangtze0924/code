@@ -1,0 +1,60 @@
+C51 COMPILER V9.54   MAIN                                                                  09/17/2026 21:57:10 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "Delay.h"
+   3          #include "MatrixLED.h"
+   4          
+   5          unsigned char Animation[]={
+   6                  0x08,0x1E,0x0E,0xFE,0x1E,0x1E,0x0C,0x00,
+   7                  0x08,0x1E,0x0E,0x1E,0x1E,0x1E,0x0C,0x00
+   8          
+   9          };
+  10          
+  11          void main()
+  12          {
+  13   1              unsigned char i,Offset=0,Count=0;
+  14   1              P2_5=0;
+  15   1              MatrixLED_Init();
+  16   1              
+  17   1              while(1)
+  18   1              {
+  19   2                      
+  20   2                              for(i=0;i<8;i++)
+  21   2                              {
+  22   3                                      MatrixLED_ShowColumn(i,Animation[i+Offset]);
+  23   3                              
+  24   3                              }
+  25   2                              Count++;
+  26   2                              if(Count>20)
+  27   2                              {
+  28   3                                      Count=0;
+  29   3                                      Offset+=8;
+  30   3                              }
+  31   2                              if(Offset>15)
+  32   2                              {
+  33   3                                      Offset=0;
+  34   3                              }
+  35   2              }
+  36   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     68    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     16       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
